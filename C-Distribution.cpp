@@ -10,7 +10,9 @@ int main() {
   vector<long> s(n), t(n);
   rep(i,n) cin >> s[i];
   rep(i,n) cin >> t[i];
+  // 少なくとも2周まわせば、n-1でもらったものをnに受け渡すケースもカバーできる
   rep(i,n*2) {
+    // t[i+1] = min(t[i+1], t[i]+s[i]); のままだと、i > n のときの処理ができないので、i mod n を取る
     t[(i+1)%n] = min(t[(i+1)%n], t[i%n]+s[i%n]);
   }
 
