@@ -21,6 +21,12 @@ func main()  {
 	// searchMinSum()
 
 	searchPartSum()
+
+	countVal()
+
+	searchSecondMin()
+
+	countEven()
 }
 
 func mergeSort() {
@@ -71,6 +77,22 @@ func searchMinSum() {
 func searchPartSum() {
 	n := 5
 	w := 10
-	arr := []int{1, 2, 12, 4, 11}
+	arr := [] int{1, 2, 12, 4, 11}
 	algorithm.SearchPartSum(n, w, &arr)
+}
+
+func countVal() {
+	arr := [] int{1,2,4,3,4,5,4}
+	n := 4
+	algorithm.CountVal(n, &arr)
+}
+
+func searchSecondMin() {
+	arr := [] int{200, 100, 12, 4, 11}
+	algorithm.SearchSecondMin(&arr)
+}
+
+func countEven() {
+	arr := [] int{160, 120, 600, 8, 40}
+	algorithm.CountEvent(&arr)
 }
