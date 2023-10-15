@@ -20,15 +20,16 @@ func main()  {
 
 	// searchMinSum()
 
-	searchPartSum()
+	// searchPartSum()
 
-	countVal()
+	// countVal()
 
-	searchSecondMin()
+	// searchSecondMin()
 
-	countEven()
+	// countEven()
 
-	searchMaxDiff()
+	// searchMaxDiff()
+	
 }
 
 func mergeSort() {
