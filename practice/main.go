@@ -27,6 +27,8 @@ func main()  {
 	searchSecondMin()
 
 	countEven()
+
+	searchMaxDiff()
 }
 
 func mergeSort() {
@@ -90,6 +92,11 @@ func countVal() {
 func searchSecondMin() {
 	arr := [] int{200, 100, 12, 4, 11}
 	algorithm.SearchSecondMin(&arr)
+}
+
+func searchMaxDiff() {
+	arr := [] int{200, 300, 1000, 500}
+	algorithm.SearchMaxDiff(&arr)
 }
 
 func countEven() {

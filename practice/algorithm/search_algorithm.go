@@ -126,6 +126,33 @@ func SearchSecondMin(arr *[]int) {
 	fmt.Printf("scondMin: %d\n", secondMin)
 }
 
+func SearchMaxDiff(arr *[]int) {
+	a := *arr
+	n := len(a)
+	min := 2000000
+	max := -1
+
+	// NOTE: O(N^2) になっちゃうのでボツ
+	// maxDiff := 0
+	// for i := 0; i < n; i++ {
+	// 	for j := i + 1; j < n; j++ {
+	// 		diff := math.Abs(float64(a[i] - a[j]))
+	// 		max := math.Max(float64(maxDiff), diff)
+	// 		maxDiff = int(max)
+	// 	}
+	// }
+	for i := 0; i < n; i++ {
+		if a[i] < min {
+			min = a[i]
+		}
+		if a[i] > max {
+			max = a[i]
+		}
+	}
+
+	fmt.Printf("maxDiff: %d \n", max - min)
+}
+
 func CountEvent(arr *[]int) {
 	a := *arr
 	n := len(a)
