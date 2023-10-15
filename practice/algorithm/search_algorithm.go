@@ -145,6 +145,31 @@ func CountEvent(arr *[]int) {
 	fmt.Printf("count: %d \n", c)
 }
 
+func CountPartSum(k, n int) {
+	// NOTE: 方針
+	// x+y+z=n => z=n-x-y と考えるとx,yが決まるとzが決まる。
+	// nについては与えられる整数なので、決まっている。x,yを変数にして探索する。
+	// x,yがわかったとしても、z<=kを満たすかどうかの確認をする必要がある。
+
+	// NOTE: k, n を比較して小さい方をx,yの範囲にする
+	// k > n のケースで、x,y=k となった場合、x+y+z>nとなってしまう。なので、n以下を使う。
+	// k < n のケースでは、x,y,<=k の範囲がnより小さいから上記のようなことを気にしないで良いので、0<=x,y<=kで良い。
+	// x,yは0以上なので0からスタートする
+	c := 0
+	len := int(math.Min(float64(k), float64(n)))
+	for x := 0; x <= len; x++ {
+		for y := 0; y <= len; y++ {
+			z := n - x - y
+			if z >= 0 && z <= k {
+				fmt.Printf("x: %d, y: %d, z: %d\n",x , y, z)
+				c++
+			}
+		}
+	}
+
+	fmt.Printf("count: %d \n", c)
+}
+
 func countDevideTimes(a int) int {
 	c := 0
 	for {

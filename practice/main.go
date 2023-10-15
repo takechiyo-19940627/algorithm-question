@@ -29,7 +29,8 @@ func main()  {
 	// countEven()
 
 	// searchMaxDiff()
-	
+
+	countPartSum()
 }
 
 func mergeSort() {
@@ -103,4 +104,10 @@ func searchMaxDiff() {
 func countEven() {
 	arr := [] int{160, 120, 600, 8, 40}
 	algorithm.CountEvent(&arr)
+}
+
+func countPartSum() {
+	k := 6
+	n := 12
+	algorithm.CountPartSum(k, n)
 }
