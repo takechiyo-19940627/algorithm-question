@@ -3,6 +3,7 @@ package algorithm
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 func SearchDist(x, y *[]int, len int, minDist *float64) {
@@ -170,6 +171,50 @@ func CountPartSum(k, n int) {
 	fmt.Printf("count: %d \n", c)
 }
 
+func CalcStr(s string) {
+	// 長さNの文字列数字S
+	// Sを先頭から+で区切って数式を作る
+	// すべての数式の計算結果を足す
+	// 2^nのアルゴリズム
+	// n = 2の時、12,1+2
+	// n = 3の時 123, 1+23, 12+3, 1+2+3
+	// n = 4の時 1234, 1+234, 12+34, 123+4, 1+2+3+4
+	// n-1箇所について「+」を入れることが可能。
+	// すべての選択肢は 2^(n-1)通りになる。
+	n := len(s)
+	r := 0
+	for bit := 0; bit < (1 << (n - 1)); bit++ {
+		// 「+」と「+」との間の値を表す。
+		tmp := 0
+		// 末尾のデータについては最後に加算すれば良いのでn-2までチェックすれば良い。
+		for i := 0; i < n - 1; i++ {
+			// 文字列の先頭から参照されているから、2回目のループ以降でtmpの桁を増やす
+			tmp *= 10
+			x, _ := strconv.Atoi(string(s[i]))
+			tmp += x
+
+			// n-1箇所のうちi個目に「+」があるかどうかをビット演算でチェックする。
+			b := bit & (1 << i)
+			// fmt.Printf("bit: %06b\n", bit)
+			// fmt.Printf("b  : %06b\n", 1 << i)
+			// 「+」が存在するので、rに加算してからtmpをリセットする。
+			if b != 0 {
+				r += tmp
+				tmp = 0
+			}
+		}
+
+		// 最後の「+」から残りの部分(最後尾の数字)を答えに加算する
+		tmp *= 10
+		y, _ := strconv.Atoi(back(s))
+		tmp += y
+		r += tmp
+		fmt.Printf("r: %d\n", r)
+	}
+
+	fmt.Printf("sum: %d\n", r)
+}
+
 func countDevideTimes(a int) int {
 	c := 0
 	for {
@@ -188,5 +233,10 @@ func calcDist(x1, y1, x2, y2 int) float64 {
 	x := math.Pow(float64(x1 - x2), 2)
 	y := math.Pow(float64(y1 - y2), 2)
 	return math.Sqrt(x + y)
+}
+
+func back(s string) string {
+	len := len(s)
+	return string(s[len-1])
 }
 

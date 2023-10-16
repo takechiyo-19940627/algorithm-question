@@ -2,6 +2,7 @@ package main
 
 import (
 	"algorithm_practice/algorithm"
+	"algorithm_practice/util"
 	"fmt"
 )
 
@@ -30,7 +31,25 @@ func main()  {
 
 	// searchMaxDiff()
 
-	countPartSum()
+	// countPartSum()
+
+	// calcStr()
+
+	// _ = algorithm.Sum(5)
+
+	r := algorithm.GetGreatestCommonDivisor(51,15)
+	fmt.Println(r)
+
+	f := algorithm.GetFibo(6)
+	fmt.Println(f)
+
+	m := make([]int, 50)
+	m = util.Fill(m, -1)
+	mf := algorithm.GetFiboMemo(49, &m)
+	fmt.Println(mf)
+	// for i := 0; i < len(m); i++ {
+	// 	fmt.Println(m[i])
+	// }
 }
 
 func mergeSort() {
@@ -110,4 +129,8 @@ func countPartSum() {
 	k := 6
 	n := 12
 	algorithm.CountPartSum(k, n)
+}
+
+func calcStr() {
+	algorithm.CalcStr("123")
 }
