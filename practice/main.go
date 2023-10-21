@@ -50,6 +50,10 @@ func main()  {
 	// for i := 0; i < len(m); i++ {
 	// 	fmt.Println(m[i])
 	// }
+
+	ar := [] int {1, 13, 10, 17, 19, 21}
+	r2 := algorithm.ExistPartSum(len(ar), 10, &ar)
+	fmt.Println(r2)
 }
 
 func mergeSort() {

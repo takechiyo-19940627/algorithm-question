@@ -50,3 +50,22 @@ func GetFiboMemo(n int, m *[]int) int {
 	
 	return memo[n]
 }
+
+// 部分和問題を再帰的に解く。
+func ExistPartSum(i, w int, a *[]int) bool {
+	if i == 0 {
+		// 求めたい部分和が0の時はtrue
+		if w == 0 {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	if ExistPartSum(i - 1, w, a) {
+		return true
+	}
+
+	arr := *a
+	return ExistPartSum(i - 1, w - arr[i - 1], a)
+}
