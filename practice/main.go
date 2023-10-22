@@ -37,23 +37,30 @@ func main()  {
 
 	// _ = algorithm.Sum(5)
 
-	r := algorithm.GetGreatestCommonDivisor(51,15)
-	fmt.Println(r)
+	// r := algorithm.GetGreatestCommonDivisor(51,15)
+	// fmt.Println(r)
 
-	f := algorithm.GetFibo(6)
-	fmt.Println(f)
+	// f := algorithm.GetFibo(6)
+	// fmt.Println(f)
 
-	m := make([]int, 50)
-	m = util.Fill(m, -1)
-	mf := algorithm.GetFiboMemo(49, &m)
-	fmt.Println(mf)
+	// m := make([]int, 50)
+	// m = util.Fill(m, -1)
+	// mf := algorithm.GetFiboMemo(49, &m)
+	// fmt.Println(mf)
 	// for i := 0; i < len(m); i++ {
 	// 	fmt.Println(m[i])
 	// }
 
-	ar := [] int {1, 13, 10, 17, 19, 21}
-	r2 := algorithm.ExistPartSum(len(ar), 10, &ar)
-	fmt.Println(r2)
+	sumPartMemo()
+
+
+	// r := algorithm.GetToribo(6)
+	// fmt.Println(r)
+
+	m := make([]int, 50)
+	m = util.Fill(m, -1)
+	r := algorithm.GetTriboMemo(10, &m)
+	fmt.Println(r)
 }
 
 func mergeSort() {
@@ -137,4 +144,14 @@ func countPartSum() {
 
 func calcStr() {
 	algorithm.CalcStr("123")
+}
+
+func sumPartMemo() {
+	ar := [] int {3, 2, 6, 5}
+	m := make([]map[int]bool, len(ar) + 1)
+	for i := 0; i < len(m); i++ {
+		m[i] = make(map[int]bool)
+	}
+	r2 := algorithm.ExistPartSum(len(ar), 14, &ar, &m)
+	fmt.Println(r2)
 }

@@ -34,6 +34,37 @@ func GetFibo(n int) int {
 	return r
 }
 
+func GetToribo(n int) int {
+	if n == 0 || n == 1 {
+		return 0
+	} else if n == 2 {
+		return 1
+	}
+	
+	r := GetToribo(n - 1) + GetToribo(n - 2) + GetToribo(n - 3)
+
+	return r
+}
+
+func GetTriboMemo(n int, m *[]int) int {
+	if n == 0 || n == 1 {
+		return 0
+	} else if n == 2 {
+		return 1
+	}
+	
+	memo := *m
+	if memo[n] != -1 {
+		return memo[n]
+	}
+
+	r := GetToribo(n - 1) + GetToribo(n - 2) + GetToribo(n - 3)
+	memo[n] = r
+
+	return r
+}
+
+
 func GetFiboMemo(n int, m *[]int) int {
 	if n == 0 {
 		return 0
@@ -52,7 +83,8 @@ func GetFiboMemo(n int, m *[]int) int {
 }
 
 // 部分和問題を再帰的に解く。
-func ExistPartSum(i, w int, a *[]int) bool {
+// 
+func ExistPartSum(i, w int, a *[]int, m *[]map[int]bool) bool {
 	if i == 0 {
 		// 求めたい部分和が0の時はtrue
 		if w == 0 {
@@ -61,11 +93,25 @@ func ExistPartSum(i, w int, a *[]int) bool {
 			return false
 		}
 	}
+	memo := *m
 
-	if ExistPartSum(i - 1, w, a) {
-		return true
+	// 同一の i と w の組み合わせですでに計算されているか。
+	v, ok := memo[i][w]
+	if ok && v {
+		return v
+	}
+
+	// a[i-1] を選ばない場合
+	// 上記を表現するには w から何も引かずに再帰呼び出しを行えば良い
+	if ExistPartSum(i - 1, w, a, m) {
+		memo[i][w] = true
+		return memo[i][w]
 	}
 
 	arr := *a
-	return ExistPartSum(i - 1, w - arr[i - 1], a)
+	// a[i-1] を選ぶ場合
+	// 上記を表現するには、w から arr[i-1] を引いた結果について再帰呼び出しを実行すれば良い
+	memo[i][w] = ExistPartSum(i - 1, w - arr[i - 1], a, m)
+
+	return memo[i][w]
 }
