@@ -73,6 +73,8 @@ func main()  {
 	algorithm.FlogMoveMinCost(n, &h)
 
 	algorithm.FlogMinConst2(n, &h)
+
+	algorithm.FlogMoveMinCost3(n, &h)
 }
 
 func mergeSort() {

@@ -49,7 +49,29 @@ func FlogMinConst2(n int, arr *[]int) {
 
 		if i > 1 {
 			c2 := dp[i - 2] + int(math.Abs(float64(h[i] - h[i - 2])))
+			// i-2から移動するほうがコストが小さければ更新される
 			chmin(&dp[i], c2)
+		}
+	}
+
+	fmt.Printf("min cost: %d \n", dp[n - 1])
+}
+
+// i番目からi+1, i+2へ配る方式で解いてみる
+func FlogMoveMinCost3(n int, arr *[]int) {
+	dp := make([]int, n)
+	dp = util.Fill(dp, 9999999999)
+	dp[0] = 0
+	h := *arr
+
+	for i := 0; i < n; i++ {
+		if i + 1 < n {
+			c1 := dp[i] + int(math.Abs(float64(h[i] - h[i + 1])))
+			chmin(&dp[i + 1], c1)
+		}
+		if i + 2 < n {
+			c2 := dp[i] + int(math.Abs(float64(h[i] - h[i + 2])))
+			chmin(&dp[i + 2], c2)
 		}
 	}
 
