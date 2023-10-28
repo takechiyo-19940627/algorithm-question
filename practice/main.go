@@ -2,7 +2,6 @@ package main
 
 import (
 	"algorithm_practice/algorithm"
-	"algorithm_practice/util"
 	"fmt"
 )
 
@@ -51,16 +50,27 @@ func main()  {
 	// 	fmt.Println(m[i])
 	// }
 
-	sumPartMemo()
+	// sumPartMemo()
 
 
 	// r := algorithm.GetToribo(6)
 	// fmt.Println(r)
 
-	m := make([]int, 50)
-	m = util.Fill(m, -1)
-	r := algorithm.GetTriboMemo(10, &m)
-	fmt.Println(r)
+	// m := make([]int, 50)
+	// m = util.Fill(m, -1)
+	// r := algorithm.GetTriboMemo(10, &m)
+	// fmt.Println(r)
+
+	// n := 1000
+	// cur := 0
+	// use := 0
+	// c := 0
+	// algorithm.GetPartSumCount(n, cur, use, &c)
+	// fmt.Println(c)
+
+	h := []int{2, 9, 4, 5, 1, 6, 10}
+	n := len(h)
+	algorithm.FlogMoveMinCost(n, &h)
 }
 
 func mergeSort() {

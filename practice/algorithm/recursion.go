@@ -115,3 +115,23 @@ func ExistPartSum(i, w int, a *[]int, m *[]map[int]bool) bool {
 
 	return memo[i][w]
 }
+
+// 十進法表記で各桁の値が7,5,3のいずれかであり，かつ7,5,3がいずれも一度以上は登場する整数を「753数」とよぶこととします．
+// 正の整数Kが与えられたときに，K以下の753数が何個あるかを求めるアルゴリズムを設計してください．
+// ただしKの桁数をdとしてO(3d)程度の計算量を許容できるものとします．
+
+func GetPartSumCount(n, cur, use int, counter *int) {
+	if cur > n {
+		return
+	}
+
+	if use == 0b111 {
+		*counter++
+	}
+
+	GetPartSumCount(n, cur * 10 + 7, use | 0b001, counter)
+
+	GetPartSumCount(n, cur * 10 + 5, use | 0b010, counter)
+
+	GetPartSumCount(n, cur * 10 + 3, use | 0b100, counter)
+}
