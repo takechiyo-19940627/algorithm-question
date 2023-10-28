@@ -71,6 +71,8 @@ func main()  {
 	h := []int{2, 9, 4, 5, 1, 6, 10}
 	n := len(h)
 	algorithm.FlogMoveMinCost(n, &h)
+
+	algorithm.FlogMinConst2(n, &h)
 }
 
 func mergeSort() {
