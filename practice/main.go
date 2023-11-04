@@ -68,13 +68,21 @@ func main()  {
 	// algorithm.GetPartSumCount(n, cur, use, &c)
 	// fmt.Println(c)
 
-	h := []int{2, 9, 4, 5, 1, 6, 10}
-	n := len(h)
-	algorithm.FlogMoveMinCost(n, &h)
+	// h := []int{2, 9, 4, 5, 1, 6, 10}
+	// n := len(h)
+	// algorithm.FlogMoveMinCost(n, &h)
 
-	algorithm.FlogMinConst2(n, &h)
+	// algorithm.FlogMinConst2(n, &h)
 
-	algorithm.FlogMoveMinCost3(n, &h)
+	// algorithm.FlogMoveMinCost3(n, &h)
+	w := []int{2, 1, 3, 2, 1, 5}
+	v := []int{3, 2, 6, 1, 3, 85}
+	n := len(w)
+	algorithm.Napsac(n, 15, &w, &v)
+
+	s := "logistic"
+	t := "algorithm"
+	algorithm.GetEditCharLength(s, t)
 }
 
 func mergeSort() {
