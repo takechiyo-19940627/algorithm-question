@@ -176,6 +176,61 @@ func Section(n int, v *[]int) {
 	fmt.Printf("min cost: %d\n", dp[n])
 }
 
+// 5.1N日間の夏休みがあり，i日目に海で泳ぐ幸福度はai，虫捕りする幸福度はbi，宿題をする幸福度はciで与えられるとします．それぞれの日について，これらの３つの行動のうちのいずれかを行います．ただし２日連続で同じ行動はしないものとします．N日間の幸福度の最大値をO(N)で求めるアルゴリズムを設計してください．
+// N日間の夏休み。
+// ai, bi, ci の3種類の幸福度。
+// 2日連続で同じ行動はできない。
+// 計算量は O(N) になるようにする。
+// 最初のi個に対して、a or b or c を選んだケース
+// iで選ぶと、i+1の選択肢が変わる。
+// テーブル設計の方式 dp[i][j] 最初のi日目でj番目の選択肢を選んだケースの価値の総和
+// j = 0: 海, 1: 虫取り, 2: 宿題
+func GetMaxSummerVacationValue(n int, aVal *[]int, bVal *[]int, cVal *[]int) {
+	a := *aVal
+	b := *bVal
+	c := *cVal
+	arr := make([][]int, n)
+	for i := 0; i < n; i++ {
+		arr[i] = make([]int, 3)
+		arr[i][0] = a[i]
+		arr[i][1] = b[i]
+		arr[i][2] = c[i]
+	}
+
+	dp := make([][]int, n + 1)
+	// NOTE: dp の初期値を0に設定する。
+	for i := 0; i < n + 1; i++ {
+		dp[i] = make([]int, 3)
+		for j := 0; j < 3; j++ {
+			dp[i][j] = 0
+		}
+	}
+
+	for i := 0; i < n; i++ {
+		// 以下の遷移の実現するために、3×3(j, k)のループ回す。
+		// ただし、j == k が同じ場合同じ添字への遷移になるのでスキップする。
+		// [i][0] => [i + 1][1], [i + 1][2]
+		// [i][1] => [i + 1][0], [i + 1][2]
+		// [i][2] => [i + 1][0], [i + 1][1]
+		for j := 0; j < 3; j++ {
+			for k := 0; k < 3; k++ {
+				// 同じものを選択してしまうケースでスキップする。
+				if j == k {
+					continue
+				}
+				chmax(&dp[i + 1][k], dp[i][j] + arr[i][k])
+			}
+		}
+	}
+
+	res := 0
+	for i := 0; i < 3; i++ {
+		chmax(&res, dp[n][i])
+	}
+
+	fmt.Printf("max number: %d\n", res)
+}
+
 func chmax(a *int, b int) {
 	if *a < b {
 		*a = b

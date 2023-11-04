@@ -75,14 +75,20 @@ func main()  {
 	// algorithm.FlogMinConst2(n, &h)
 
 	// algorithm.FlogMoveMinCost3(n, &h)
-	w := []int{2, 1, 3, 2, 1, 5}
-	v := []int{3, 2, 6, 1, 3, 85}
-	n := len(w)
-	algorithm.Napsac(n, 15, &w, &v)
+	// w := []int{2, 1, 3, 2, 1, 5}
+	// v := []int{3, 2, 6, 1, 3, 85}
+	// n := len(w)
+	// algorithm.Napsac(n, 15, &w, &v)
 
-	s := "logistic"
-	t := "algorithm"
-	algorithm.GetEditCharLength(s, t)
+	// s := "logistic"
+	// t := "algorithm"
+	// algorithm.GetEditCharLength(s, t)
+
+	a := []int {1, 3, 4, 5}
+	b := []int {10, 30, 40, 50}
+	c := []int {100, 300, 400, 500}
+	n := len(a)
+	algorithm.GetMaxSummerVacationValue(n, &a, &b, &c)
 }
 
 func mergeSort() {
