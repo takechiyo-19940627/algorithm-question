@@ -260,6 +260,52 @@ func MaxSumAsW(n, w int, a []int) bool {
 	return dp[n][w]
 }
 
+// N個の正の整数a0,a1,...,aN－1と正の整数Wが与えられます．
+// この中からいくつか選んで総和をとって得られる１以上W以下の整数が何通りあるかを
+// O(NW)で求めるアルゴリズムを設計してください．
+// 
+// a0〜ai の範囲でいくつか選んだ総和を考える。
+// W についても 0 〜 W の範囲で総和を満たすかどうかを考える。
+// それぞれ選ぶ選ばないのケースがある
+// ai を選べるかどうかの制約として 1 <= ai <= W がある。
+// なので j + a[i] <= W の検証は必要になる。
+// dp[i][j] N個の整数のうち最初の i個の整数の中からいくつか選んだ総和を jにできるかどうか
+func MaxSumLessThanW(n, w int, a []int) int {
+	dp := make([][]bool, n + 1)
+	for i := 0; i < n + 1; i++ {
+		dp[i] = make([]bool, w + 1)
+	}
+
+	dp[0][0] = true
+	for i := 0; i < n; i++ {
+		for j := 0; j <= w; j++ {
+			if !dp[i][j] {
+				continue
+			}
+
+			// a[i]を選ばなかったケースの遷移。部分和がjのまま遷移する。
+			dp[i + 1][j] = true
+			// a[i]を選ぶケースの遷移。wを超えないようにだけチェックしておく。
+			if j + a[i] <= w {
+				dp[i + 1][j + a[i]] = true
+			}
+		}
+	}
+
+	count := 0
+	for i := 0; i <= w; i++ {
+		if i == 0 {
+			continue
+		}
+
+		if dp[n][i] {
+			fmt.Printf("n: %d, i: %d \n", n, i)
+			count++
+		}
+	}
+
+	return count
+}
 
 func chmax(a *int, b int) {
 	if *a < b {

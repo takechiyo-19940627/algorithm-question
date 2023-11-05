@@ -90,10 +90,11 @@ func main()  {
 	// n := len(a)
 	// algorithm.GetMaxSummerVacationValue(n, &a, &b, &c)
 	a := []int{1, 3, 4, 5}
-	w := 1
+	w := 13
 	n := len(a)
-	r := algorithm.MaxSumAsW(n, w, a)
-	fmt.Println(r)
+	// r := algorithm.MaxSumAsW(n, w, a)
+	r := algorithm.MaxSumLessThanW(n, w, a)
+	fmt.Printf("count: %d\n", r)
 }
 
 func mergeSort() {
