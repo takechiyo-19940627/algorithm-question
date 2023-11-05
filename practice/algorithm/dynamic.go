@@ -231,6 +231,36 @@ func GetMaxSummerVacationValue(n int, aVal *[]int, bVal *[]int, cVal *[]int) {
 	fmt.Printf("max number: %d\n", res)
 }
 
+// N個の正の整数a0,a1,...,aN－1からいくつか選んで総和を所望の整数Wに一致させることができるかどうかを判定する問題をO(NW)で解くアルゴリズムを設計してください
+// 0〜wそれぞれの値について、a[i]を選んだ場合、選ばなかった場合の演算
+// w の部分和の管理 => j という添字での管理。0〜wの範囲で推移する。
+// 選んだ場合 => j - a[i] のケースで true である => a[i]を選ぶと部分和 w[i] が満たされる。
+func MaxSumAsW(n, w int, a []int) bool {
+	dp := make([][]bool, n + 1)
+	for i := 0; i <= n; i++ {
+		dp[i] = make([]bool, w + 1)
+	}
+	dp[0][0] = true
+
+	for i := 0; i < n; i++ {
+		for j := 0; j <= w; j++ {
+			// a[i] を選ばないケース
+			// j という部分和を i時点で満たしている場合、i+1のケースでも同様に満たしているとして更新してあげる。
+			if dp[i][j] {
+				dp[i + 1][j] = true
+			}
+
+			// a[i] を選ぶケース
+			if j >= a[i] && dp[i][j - a[i]] {
+				dp[i + 1][j] = true
+			}
+		}
+	}
+
+	return dp[n][w]
+}
+
+
 func chmax(a *int, b int) {
 	if *a < b {
 		*a = b

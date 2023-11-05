@@ -84,11 +84,16 @@ func main()  {
 	// t := "algorithm"
 	// algorithm.GetEditCharLength(s, t)
 
-	a := []int {1, 3, 4, 5}
-	b := []int {10, 30, 40, 50}
-	c := []int {100, 300, 400, 500}
+	// a := []int {1, 3, 4, 5}
+	// b := []int {10, 30, 40, 50}
+	// c := []int {100, 300, 400, 500}
+	// n := len(a)
+	// algorithm.GetMaxSummerVacationValue(n, &a, &b, &c)
+	a := []int{1, 3, 4, 5}
+	w := 1
 	n := len(a)
-	algorithm.GetMaxSummerVacationValue(n, &a, &b, &c)
+	r := algorithm.MaxSumAsW(n, w, a)
+	fmt.Println(r)
 }
 
 func mergeSort() {
